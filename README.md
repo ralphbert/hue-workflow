@@ -8,6 +8,10 @@ A very basic gulp workflow.
 * Minifying CSS
 * Auto reload server
 
+## Installation
+
+Run ```npm install```
+
 ## Usage
 
 Put any files in the corresponding directories.
