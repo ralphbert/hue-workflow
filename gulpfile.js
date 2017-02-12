@@ -1,10 +1,12 @@
 let gulp = require('gulp');
 let cssmin = require('gulp-cssmin');
 let uglify = require('gulp-uglify');
+let autoprefixer = require('gulp-autoprefixer');
 let browserSync = require('browser-sync').create();
 
 gulp.task('css', function() {
   gulp.src('src/css/**/*.css')
+    .pipe(autoprefixer())
     .pipe(cssmin())
     .pipe(gulp.dest('build/css'));
 });

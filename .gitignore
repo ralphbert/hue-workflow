@@ -1,6 +1,6 @@
 .idea
 .DS_Store
 thumbs.db
-node_modues
+node_modules
 npm-debug.log
 build
