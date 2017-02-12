@@ -1,17 +1,24 @@
 let gulp = require('gulp');
+let webpackStream = require('webpack-stream');
+let webpack = require('webpack');
 let cssmin = require('gulp-cssmin');
 let uglify = require('gulp-uglify');
+let named = require('vinyl-named');
+let autoprefixer = require('gulp-autoprefixer');
 let browserSync = require('browser-sync').create();
+let webpackConfig = require('./webpack.config');
 
 gulp.task('css', function() {
   gulp.src('src/css/**/*.css')
     .pipe(cssmin())
+    .pipe(autoprefixer())
     .pipe(gulp.dest('build/css'));
 });
 
 gulp.task('js', function() {
   gulp.src('src/js/**/*.js')
-    .pipe(uglify())
+    .pipe(named())
+    .pipe(webpackStream(webpackConfig, webpack))
     .pipe(gulp.dest('build/js'));
 });
 
