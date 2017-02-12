@@ -1,0 +1,22 @@
+{
+  "name": "hue-workflow",
+  "version": "1.0.0",
+  "description": "A simple gulp workflow",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ralphbert/hue-workflow.git"
+  },
+  "keywords": [],
+  "author": "Ralph Harrer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ralphbert/hue-workflow/issues"
+  },
+  "homepage": "https://github.com/ralphbert/hue-workflow#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.7",
+    "gulp": "^3.9.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-uglify": "^2.0.1"
+  }
+}
