@@ -32,8 +32,17 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor' // Specify the common bundle's name.
     }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
+    }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: options.devtool && (options.devtool.indexOf("sourcemap") >= 0 || options.devtool.indexOf("source-map") >= 0)
+      beautify: false,
+      comments: false
+    }),
+    new webpack.BannerPlugin({
+      banner: 'Brought to you by Ralph with  😃',
+      entryOnly: true
     })
   ]
 };

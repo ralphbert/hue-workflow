@@ -2,14 +2,34 @@ let gulp = require('gulp');
 let webpackStream = require('webpack-stream');
 let webpack = require('webpack');
 let cssmin = require('gulp-cssmin');
+let sass = require('gulp-sass');
 let uglify = require('gulp-uglify');
 let named = require('vinyl-named');
+let gutil = require('gulp-util');
+let args = require('yargs').argv;
+let nunjucksRender = require('gulp-nunjucks-render');
 let autoprefixer = require('gulp-autoprefixer');
 let browserSync = require('browser-sync').create();
-let webpackConfig = require('./webpack.config');
 
+const env = (args.deploy) ? 'prod' : 'dev';
+console.log('using env:', env);
+let webpackConfig = require('./webpack.config.' + env);
+
+if (env != 'prod') {
+  cssmin = gutil.noop;
+}
+
+// legacy task. scss does the job now
 gulp.task('css', function() {
   gulp.src('src/css/**/*.css')
+    .pipe(cssmin())
+    .pipe(autoprefixer())
+    .pipe(gulp.dest('build/css'));
+});
+
+gulp.task('scss', function() {
+  gulp.src('src/scss/**/*.scss')
+    .pipe(sass())
     .pipe(cssmin())
     .pipe(autoprefixer())
     .pipe(gulp.dest('build/css'));
@@ -23,7 +43,10 @@ gulp.task('js', function() {
 });
 
 gulp.task('templates', function() {
-  gulp.src('src/templates/**/*.html')
+  gulp.src('src/templates/*.html')
+    .pipe(nunjucksRender({
+      path: 'src/templates'
+    }))
     .pipe(gulp.dest('build'));
 });
 
@@ -33,7 +56,9 @@ gulp.task('img', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('src/css/**/*.css', ['css']);
+  // legacy task. scss does the job now
+  //gulp.watch('src/css/**/*.css', ['css']);
+  gulp.watch('src/scss/**/*.scss', ['scss']);
   gulp.watch('src/js/**/*.js', ['js']);
   gulp.watch('src/templates/**/*.html', ['templates']);
 });
@@ -48,5 +73,5 @@ gulp.task('serve', function() {
   });
 });
 
-gulp.task('default', ['css', 'js', 'templates', 'img']);
+gulp.task('default', ['scss', 'js', 'templates', 'img']);
 gulp.task('dev', ['default', 'watch', 'serve']);
