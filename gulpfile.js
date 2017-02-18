@@ -69,7 +69,8 @@ gulp.task('serve', function () {
       baseDir: "./build"
     },
     files: ['./build/**/*'],
-    reloadDebounce: 500
+    reloadDebounce: 500,
+    open: false
   });
 });
 
