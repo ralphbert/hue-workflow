@@ -20,29 +20,29 @@ if (env != 'prod') {
 }
 
 // legacy task. scss does the job now
-gulp.task('css', function() {
+gulp.task('css', function () {
   gulp.src('src/css/**/*.css')
     .pipe(cssmin())
     .pipe(autoprefixer())
     .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('scss', function() {
+gulp.task('scss', function () {
   gulp.src('src/scss/**/*.scss')
-    .pipe(sass())
+    .pipe(sass({ outputStyle: 'expanded' }))
     .pipe(cssmin())
     .pipe(autoprefixer())
     .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('js', function() {
+gulp.task('js', function () {
   gulp.src('src/js/**/*.js')
     .pipe(named())
     .pipe(webpackStream(webpackConfig, webpack))
     .pipe(gulp.dest('build/js'));
 });
 
-gulp.task('templates', function() {
+gulp.task('templates', function () {
   gulp.src('src/templates/*.html')
     .pipe(nunjucksRender({
       path: 'src/templates'
@@ -50,12 +50,12 @@ gulp.task('templates', function() {
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('img', function() {
+gulp.task('img', function () {
   gulp.src('src/img/**/*')
     .pipe(gulp.dest('build/img'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   // legacy task. scss does the job now
   //gulp.watch('src/css/**/*.css', ['css']);
   gulp.watch('src/scss/**/*.scss', ['scss']);
@@ -63,7 +63,7 @@ gulp.task('watch', function() {
   gulp.watch('src/templates/**/*.html', ['templates']);
 });
 
-gulp.task('serve', function() {
+gulp.task('serve', function () {
   browserSync.init({
     server: {
       baseDir: "./build"
