@@ -6,6 +6,7 @@ let sass = require('gulp-sass');
 let uglify = require('gulp-uglify');
 let named = require('vinyl-named');
 let gutil = require('gulp-util');
+let plumber = require('gulp-plumber');
 let args = require('yargs').argv;
 let nunjucksRender = require('gulp-nunjucks-render');
 let autoprefixer = require('gulp-autoprefixer');
@@ -22,6 +23,7 @@ if (env != 'prod') {
 // legacy task. scss does the job now
 gulp.task('css', function () {
   gulp.src('src/css/**/*.css')
+    .pipe(plumber())
     .pipe(cssmin())
     .pipe(autoprefixer())
     .pipe(gulp.dest('build/css'));
@@ -29,6 +31,7 @@ gulp.task('css', function () {
 
 gulp.task('scss', function () {
   gulp.src('src/scss/**/*.scss')
+    .pipe(plumber())
     .pipe(sass({ outputStyle: 'expanded' }))
     .pipe(cssmin())
     .pipe(autoprefixer())
@@ -37,6 +40,7 @@ gulp.task('scss', function () {
 
 gulp.task('js', function () {
   gulp.src('src/js/**/*.js')
+    .pipe(plumber())
     .pipe(named())
     .pipe(webpackStream(webpackConfig, webpack))
     .pipe(gulp.dest('build/js'));
@@ -44,6 +48,7 @@ gulp.task('js', function () {
 
 gulp.task('templates', function () {
   gulp.src('src/templates/*.html')
+    .pipe(plumber())
     .pipe(nunjucksRender({
       path: 'src/templates'
     }))
