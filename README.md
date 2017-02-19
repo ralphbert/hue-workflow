@@ -1,22 +1,39 @@
 # hue-workflow
 
-A very basic gulp workflow. 
+A gulp workflow including Webpack, Babel, SCSS and Nunjucks 
 
 ## Features:
 
-* Uglifying JS
-* Minifying CSS
+* Webpack as JS bundler including CommonJunks plugin
+* Vue.js and vue template support
+* SCSS
+* Nunjuck as template engine
 * Auto reload server
+* Development and production builds
 
 ## Installation
 
 Run ```npm install```
 
+## Configuration
+
+See webpack.config.dev.js for development and webpack.config.prod.js for production settings. 
+
 ## Usage
 
 Put any files in the corresponding directories.
-HTML files go into the _templates_ dir.
+HTML/Nunjuck files go into the _templates_ dir.
 
 ```gulp``` runs all tasks without starting the server.
 
 ```gulp dev``` runs all tasks and starts the reload server.
+
+Take a look into gulpfile.js to see the other tasks.
+
+## Deployment
+
+add ```--deploy``` to every gulp task to run it in deployment mode.
+
+To build everything for deployment run:
+ 
+```gulp --deploy```

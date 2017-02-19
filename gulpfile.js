@@ -39,7 +39,7 @@ gulp.task('scss', function () {
 });
 
 gulp.task('js', function () {
-  gulp.src('src/js/**/*.js')
+  gulp.src('src/js/*.js')
     .pipe(plumber())
     .pipe(named())
     .pipe(webpackStream(webpackConfig, webpack))
@@ -63,9 +63,9 @@ gulp.task('img', function () {
 gulp.task('watch', function () {
   // legacy task. scss does the job now
   //gulp.watch('src/css/**/*.css', ['css']);
-  gulp.watch('src/scss/**/*.scss', ['scss']);
-  gulp.watch('src/js/**/*.js', ['js']);
-  gulp.watch('src/templates/**/*.html', ['templates']);
+  gulp.watch('src/scss/**/*', ['scss']);
+  gulp.watch(['src/js/**/*'], ['js']);
+  gulp.watch('src/templates/**/*', ['templates']);
 });
 
 gulp.task('serve', function () {
