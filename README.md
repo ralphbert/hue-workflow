@@ -2,7 +2,7 @@
 
 A very basic gulp workflow. 
 
-Checkout branch **Webpack** for a workflow with Webpack, SCSS and more.
+Checkout branch **[Webpack](https://github.com/ralphbert/hue-workflow/tree/webpack)** for a workflow with Webpack, SCSS and more.
 
 ## Features:
 
