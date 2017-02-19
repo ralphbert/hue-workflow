@@ -2,6 +2,8 @@
 
 A very basic gulp workflow. 
 
+Checkout branch **Webpack** for a workflow with Webpack, SCSS and more.
+
 ## Features:
 
 * Uglifying JS
