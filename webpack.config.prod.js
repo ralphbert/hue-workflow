@@ -1,5 +1,5 @@
 let webpack = require('webpack');
-let baseConfig = require('./webpack.config.base');
+let baseConfig = Object.assign({}, require('./webpack.config.base'));
 
 baseConfig.devtool = "cheap-eval-source-map";
 baseConfig.plugins = baseConfig.plugins.concat([

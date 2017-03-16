@@ -10,6 +10,7 @@ A gulp workflow including Webpack, Babel, SCSS and Nunjucks
 * Nunjuck as template engine
 * Auto reload server
 * Development and production builds
+* mocha tests
 
 ## Installation
 
@@ -37,3 +38,9 @@ add ```--deploy``` to every gulp task to run it in deployment mode.
 To build everything for deployment run:
  
 ```gulp --deploy```
+
+## Test
+
+Test cases can be added in the `/test` directory.
+
+To run the tests execute `npm test`

@@ -1,5 +1,5 @@
-let Vue = require('vueCommon');
-let App = require('./app.vue');
+import Vue from 'vueCommon';
+import App from './app.vue';
 
 new Vue({
   el: '#app',
